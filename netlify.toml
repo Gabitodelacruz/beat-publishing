@@ -1,0 +1,20 @@
+# Beat Publishing — Netlify deploy config
+
+[build]
+  # The homepage is index.html at the repo root, so no rewrite is needed.
+  publish = "."
+  functions = "netlify/functions"
+
+# Map the webhook URL documented in the Stripe dashboard to the function.
+# Stripe endpoint to register:  https://beatpublishing.com/api/webhooks/stripe
+[[redirects]]
+  from = "/api/webhooks/stripe"
+  to = "/.netlify/functions/stripe-webhook"
+  status = 200
+  force = true
+
+# Environment variables are set in the Netlify dashboard
+# (Site settings -> Environment variables), NOT here. Required:
+#   STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET
+#   META_PIXEL_ID, META_CAPI_TOKEN   (META_TEST_EVENT_CODE only during testing)
+#   LULU_CLIENT_ID, LULU_CLIENT_SECRET, LULU_POD_PACKAGE_EN, LULU_POD_PACKAGE_DE
