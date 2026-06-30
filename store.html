@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Between Cities — Beat Publishing</title>
+<meta name="description" content="Between Cities (A guided report) by Gabriel De La Cruz. A situation report from a self with no native ground. English and German editions, direct from the publisher." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#FAF8F3; --ink:#1A1A1A; --muted:#6B655C; --hair:#DDD8CE;
+    --accent:#2B4C7E; --accent-ink:#FFFFFF;
+    --serif:"Source Serif 4",Georgia,serif; --sans:"Inter",system-ui,sans-serif;
+    --maxw:680px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);
+    line-height:1.6;font-size:18px;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+  /* status strip — the Lagebericht annotation: surfaces routing logic as documentary texture */
+  .report{font-family:var(--sans);font-size:11.5px;letter-spacing:.04em;color:var(--muted);
+    border-bottom:1px solid var(--hair);background:var(--paper)}
+  .report .wrap{display:flex;justify-content:space-between;gap:12px;padding:7px 22px;flex-wrap:wrap}
+  .report b{font-weight:500;color:var(--ink)}
+
+  nav{font-family:var(--sans)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-bottom:1px solid var(--hair)}
+  .brand{font-family:var(--serif);font-size:16px;letter-spacing:.05em}
+  .nav-r{display:flex;gap:18px;align-items:center;font-size:13px;color:var(--muted)}
+  .nav-r a{color:var(--muted)}
+  select{font-family:var(--sans);font-size:12px;color:var(--ink);background:transparent;
+    border:1px solid var(--hair);border-radius:7px;padding:5px 8px}
+
+  header.hero{text-align:center;padding:54px 0 12px}
+  .eyebrow{font-family:var(--sans);font-size:11px;letter-spacing:.2em;color:var(--muted);
+    text-transform:uppercase;margin:0 0 18px}
+  h1{font-weight:500;font-size:34px;line-height:1.15;margin:0 0 4px}
+  .subtitle{font-style:italic;color:var(--muted);font-size:18px;margin:0 0 2px}
+  .author{font-family:var(--sans);font-size:13px;color:var(--muted);letter-spacing:.02em;margin:0 0 30px}
+
+  .editions{display:flex;gap:30px;justify-content:center;align-items:flex-end;flex-wrap:wrap;margin:0 0 26px}
+  .ed{width:128px;text-align:center}
+  .cover{width:128px;height:182px;background:#EFEAE0;border:1px solid var(--hair);border-radius:2px;
+    display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--muted);
+    font-style:italic;transition:transform .25s ease}
+  .ed.active .cover{outline:1.5px solid var(--accent);outline-offset:3px}
+  .ed-meta{font-family:var(--sans);font-size:12px;color:var(--muted);margin-top:10px;line-height:1.4}
+  .ed-price{color:var(--ink);font-weight:500}
+
+  .actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:6px 0 8px}
+  .btn{font-family:var(--sans);font-size:14px;border-radius:9px;padding:12px 22px;cursor:pointer;border:1px solid var(--accent)}
+  .btn-primary{background:var(--accent);color:var(--accent-ink)}
+  .btn-ghost{background:transparent;color:var(--accent)}
+  .btn-amazon{background:transparent;color:var(--ink);border-color:var(--hair)}
+  .vat-note{font-family:var(--sans);font-size:11.5px;color:var(--muted);margin:4px 0 0;min-height:16px}
+
+  .epigraph{font-style:italic;text-align:center;color:var(--muted);font-size:17px;
+    border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);margin:40px 0;padding:24px 0}
+  section.book{padding:8px 0 10px}
+  h2{font-weight:500;font-size:14px;font-family:var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
+  .book p{margin:0 0 18px}
+  .extract{border-left:2px solid var(--hair);padding-left:18px;color:#3a352e;font-size:17px}
+  footer{font-family:var(--sans);font-size:12px;color:var(--muted);border-top:1px solid var(--hair);
+    margin-top:48px;padding:22px 0 60px}
+  footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .switch-edition{font-family:var(--sans);font-size:12px;color:var(--accent);background:none;border:none;cursor:pointer;padding:0;margin-top:8px}
+  @media (max-width:520px){ h1{font-size:28px} header.hero{padding:36px 0 8px} body{font-size:17px} }
+  @media (prefers-reduced-motion:reduce){ *{transition:none!important} }
+</style>
+</head>
+<body>
+
+<div class="report" aria-label="Order routing status">
+  <div class="wrap">
+    <span>Detected: <b id="r-loc">—</b> · pricing in <b id="r-cur">—</b></span>
+    <span id="r-route">Resolving fulfilment route…</span>
+  </div>
+</div>
+
+<nav>
+  <div class="wrap">
+    <span class="brand">BEAT&nbsp;PUBLISHING</span>
+    <div class="nav-r">
+      <a href="#book">The Book</a>
+      <a href="#author">The Author</a>
+      <select id="region" aria-label="Region and currency">
+        <option value="DE">Germany · €</option>
+        <option value="AT">Austria · €</option>
+        <option value="CY">Cyprus · €</option>
+        <option value="GB">United Kingdom · £</option>
+        <option value="US">United States · $</option>
+        <option value="PH">Philippines · $</option>
+        <option value="DEFAULT">Rest of world · $</option>
+      </select>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="hero">
+    <p class="eyebrow">A situation report from a self with no native ground</p>
+    <h1 id="h-title">Between Cities</h1>
+    <p class="subtitle" id="h-sub">A guided report</p>
+    <p class="author">Gabriel De La Cruz</p>
+
+    <div class="editions">
+      <div class="ed" id="ed-en" data-ed="en">
+        <div class="cover">English cover</div>
+        <div class="ed-meta">English · 178pp<br><span class="ed-price">£11.99 / $14.99</span></div>
+        <button class="switch-edition" data-pick="en">Select this edition</button>
+      </div>
+      <div class="ed" id="ed-de" data-ed="de">
+        <div class="cover">Deutsche Ausgabe</div>
+        <div class="ed-meta">Deutsch · 202pp<br><span class="ed-price">€14.99</span></div>
+        <button class="switch-edition" data-pick="de">Diese Ausgabe wählen</button>
+      </div>
+    </div>
+
+    <div class="actions" id="actions"></div>
+    <p class="vat-note" id="vat"></p>
+  </header>
+
+  <p class="epigraph">“Kracht’s affectless flâneur, set loose in Bolaño’s Mexico City, made to file his findings in Sebald’s documentary key.”</p>
+
+  <section class="book" id="book">
+    <h2>The book</h2>
+    <p>A novel that presents itself, formally, as a situation report — filed by a narrator who has spent over a decade in perpetual intercontinental transit and never stayed anywhere a full month. Interior, digressive, observational; geography is memory, and memory will not hold still.</p>
+    <p class="extract">“I travelled between countries for work, never staying longer than a month in the same place. That had been my life for over ten years now.”</p>
+    <p>Its frame warns the reader plainly: anyone hoping for drama, tragedy and an epic arc will be disappointed — supplying one would falsify the reality of F. Wendelin. The flatness is not a deficit. It is the diagnosis.</p>
+  </section>
+
+  <section class="book" id="author">
+    <h2>The author</h2>
+    <p>Gabriel De La Cruz writes from inside the borderless managerial world the book anatomises — a German writer of Greek-Filipino parentage. The result is less a novel of place than a report on the impossibility of place.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Beat Publishing · Zinonos Sozou 1, 1075 Nicosia · heart@beatpublishing.com</span>
+    <span id="f-route">Amazon shown only where direct shipping is uneconomic.</span>
+  </div>
+</footer>
+
+<script>
+/* Inlined mirror of /config/catalog.json so this page renders standalone.
+   In production, fetch('/config/catalog.json') instead and delete this block. */
+const CATALOG = {
+  margin_floor_eur: 3.50,
+  stripe_fee: { pct: 0.015, fixed_eur: 0.25 },
+  editions: {
+    en: { title:"Between Cities", subtitle:"A guided report", print_cost_pod_eur:2.35 },
+    de: { title:"Reiseführer und Lagebericht des Felix Wendelin", subtitle:"Roman", print_cost_pod_eur:2.90, buchpreisbindung:true }
+  },
+  markets: {
+    DE:{currency:"EUR",default_edition:"de",price:14.99,vat:{rate:0.07,mode:"inclusive"},ship_zone:"EU",label:"Germany"},
+    AT:{currency:"EUR",default_edition:"de",price:14.99,vat:{rate:0.10,mode:"inclusive"},ship_zone:"EU",label:"Austria"},
+    CY:{currency:"EUR",default_edition:"en",price:14.99,vat:{rate:0.19,mode:"inclusive"},ship_zone:"EU",label:"Cyprus"},
+    GB:{currency:"GBP",default_edition:"en",price:11.99,vat:{rate:0.0,mode:"zero_rated"},ship_zone:"UK",label:"United Kingdom"},
+    US:{currency:"USD",default_edition:"en",price:14.99,vat:{rate:0.0,mode:"none"},ship_zone:"US",label:"United States"},
+    PH:{currency:"USD",default_edition:"en",price:14.99,vat:{rate:0.0,mode:"export"},ship_zone:"LONGHAUL",label:"Philippines"},
+    DEFAULT:{currency:"USD",default_edition:"en",price:14.99,vat:{rate:0.0,mode:"none"},ship_zone:"LONGHAUL",label:"Rest of world"}
+  },
+  ship_estimate_eur: { EU:3.20, UK:5.50, US:4.10, LONGHAUL:18.00 },
+  fx_from_eur: { EUR:1.0, GBP:0.80, USD:1.0 },
+  stripe_payment_links: {
+    en_EUR:"https://buy.stripe.com/test_eVq6oG5eA3JzaqV6PW00001", en_GBP:"https://buy.stripe.com/test_dRmfZg22o1Br8iNfms00003",
+    en_USD:"https://buy.stripe.com/test_dRm14mgXigwl0Ql6PW00002", de_EUR:"https://buy.stripe.com/test_7sY3cu4aw5RH8iNgqw00000"
+  },
+  amazon: { DE:"https://www.amazon.de/dp/PENDING_ASIN", GB:"https://www.amazon.co.uk/dp/PENDING_ASIN",
+    US:"https://www.amazon.com/dp/PENDING_ASIN", PH:"https://www.amazon.com/dp/PENDING_ASIN",
+    DEFAULT:"https://www.amazon.com/dp/PENDING_ASIN" }
+};
+const SYM = { EUR:"€", GBP:"£", USD:"$" };
+
+let state = { country:"DEFAULT", edition:"en" };
+
+function resolveCountry(){
+  // Client-side proxy for edge geo-IP: timezone + language. Production resolves at the CDN edge.
+  try{
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+    if(/Berlin|Busingen/.test(tz)) return "DE";
+    if(/Vienna/.test(tz)) return "AT";
+    if(/Nicosia|Famagusta/.test(tz)) return "CY";
+    if(/London|Belfast/.test(tz)) return "GB";
+    if(/New_York|Chicago|Denver|Los_Angeles|Anchorage/.test(tz)) return "US";
+    if(/Manila/.test(tz)) return "PH";
+    if(/Europe\//.test(tz)) return "CY"; // other EU → English UI, EUR
+  }catch(e){}
+  const l=(navigator.language||"en").toLowerCase();
+  if(l.startsWith("de")) return "DE";
+  if(l.startsWith("en-gb")) return "GB";
+  return "DEFAULT";
+}
+
+function landedMargin(edition, market){
+  // net price in EUR, minus print, shipping, stripe fee → the Amazon gate input
+  const priceEur = market.price / (CATALOG.fx_from_eur[market.currency]);
+  const netEur = market.vat.mode==="inclusive" ? priceEur/(1+market.vat.rate) : priceEur;
+  const print = CATALOG.editions[edition].print_cost_pod_eur;
+  const ship = CATALOG.ship_estimate_eur[market.ship_zone];
+  const fee = netEur*CATALOG.stripe_fee.pct + CATALOG.stripe_fee.fixed_eur;
+  return netEur - print - ship - fee;
+}
+
+function render(){
+  const m = CATALOG.markets[state.country] || CATALOG.markets.DEFAULT;
+  const sym = SYM[m.currency];
+  // Buchpreisbindung guard: German edition cannot be discounted to a German buyer (no promo path here, but flagged)
+  document.getElementById("r-loc").textContent = m.label;
+  document.getElementById("r-cur").textContent = m.currency;
+  document.getElementById("region").value = state.country;
+
+  document.getElementById("ed-en").classList.toggle("active", state.edition==="en");
+  document.getElementById("ed-de").classList.toggle("active", state.edition==="de");
+  document.getElementById("h-title").textContent = CATALOG.editions[state.edition].title;
+  document.getElementById("h-sub").textContent = CATALOG.editions[state.edition].subtitle;
+
+  const margin = landedMargin(state.edition, m);
+  const viable = margin >= CATALOG.margin_floor_eur;
+  const actions = document.getElementById("actions");
+  const route = document.getElementById("r-route");
+  const priceTxt = sym + m.price.toFixed(2);
+
+  if(viable){
+    const link = CATALOG.stripe_payment_links[state.edition+"_"+m.currency]
+              || CATALOG.stripe_payment_links["en_"+m.currency]
+              || CATALOG.stripe_payment_links.en_USD;
+    actions.innerHTML =
+      '<a class="btn btn-primary" href="'+link+'">Order direct — '+priceTxt+'</a>'+
+      '<a class="btn btn-ghost" href="#book">Read an extract</a>';
+    route.innerHTML = 'Route: <b>direct</b> · est. margin €'+margin.toFixed(2)+' ≥ floor €'+CATALOG.margin_floor_eur.toFixed(2);
+  } else {
+    const az = CATALOG.amazon[state.country] || CATALOG.amazon.DEFAULT;
+    actions.innerHTML =
+      '<a class="btn btn-amazon" href="'+az+'">Buy on Amazon — '+priceTxt+'</a>'+
+      '<a class="btn btn-ghost" href="#book">Read an extract</a>';
+    route.innerHTML = 'Route: <b>Amazon</b> · direct margin €'+margin.toFixed(2)+' &lt; floor — local POD is cheaper';
+  }
+
+  const v = document.getElementById("vat");
+  if(m.vat.mode==="inclusive") v.textContent = "Includes "+Math.round(m.vat.rate*100)+"% VAT. Ships from the EU.";
+  else if(m.vat.mode==="zero_rated") v.textContent = "Books are zero-rated for VAT in the UK.";
+  else if(m.vat.mode==="export") v.textContent = "Priced as an export sale; any local duties are the buyer’s.";
+  else v.textContent = "No VAT applied.";
+}
+
+document.getElementById("region").addEventListener("change", e=>{
+  state.country = e.target.value;
+  const m = CATALOG.markets[state.country];
+  state.edition = m.default_edition; // follow region default, but user can still switch below
+  render();
+});
+document.querySelectorAll("[data-pick]").forEach(b=>{
+  b.addEventListener("click", ()=>{ state.edition=b.getAttribute("data-pick"); render(); });
+});
+
+state.country = resolveCountry();
+state.edition = (CATALOG.markets[state.country]||CATALOG.markets.DEFAULT).default_edition;
+render();
+</script>
+</body>
+</html>

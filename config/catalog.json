@@ -1,0 +1,83 @@
+{
+  "_notes": {
+    "purpose": "Single source of truth for storefront pricing, tax, fulfilment routing and the Amazon margin gate.",
+    "ISBN_RESOLVED": "EN 978-9925-8263-4-6 · DE 978-9925-8263-0-8 — confirmed by The Publisher; English front-matter print (…0-8) was the conflict and is overridden. The webhook hard-stop now clears.",
+    "BLOCKED_before_live": [
+      "packaged_weight_g values are planning estimates, not weighed parcels. Replace with real packaged weights (book + mailer + insert) before the shipping table is trusted.",
+      "stripe payment_link_* values are placeholders. Create real Payment Links per edition+currency in Stripe and paste the URLs here.",
+      "amazon.asin values are PENDING — fill once the titles are live on each marketplace.",
+      "print_cost_* and shipping_estimate_eur are planning figures pending the IngramSpark/Lulu live calculator and a real carrier quote."
+    ],
+    "locked_params_source": "The Publisher — locked pricing parameters v2"
+  },
+
+  "margin_floor_eur": 3.50,
+  "stripe_fee": { "pct": 0.015, "fixed_eur": 0.25 },
+
+  "editions": {
+    "en": {
+      "title": "Between Cities",
+      "subtitle": "A guided report",
+      "language": "English",
+      "pages": 178,
+      "isbn": "978-9925-8263-4-6",
+      "weight_bare_g": 221,
+      "packaged_weight_g": 270,
+      "print_cost_pod_eur": 2.35,
+      "url": { "en": "/en/between-cities", "de": "/de/between-cities" }
+    },
+    "de": {
+      "title": "Reiseführer und Lagebericht des Felix Wendelin",
+      "subtitle": "Roman",
+      "language": "Deutsch",
+      "pages": 202,
+      "isbn": "978-9925-8263-0-8",
+      "weight_bare_g": 249,
+      "packaged_weight_g": 300,
+      "print_cost_pod_eur": 2.90,
+      "print_cost_offset_eur": 1.80,
+      "buchpreisbindung": true,
+      "url": { "en": "/en/zwischen-staedten", "de": "/de/zwischen-staedten" }
+    }
+  },
+
+  "markets": {
+    "DE": { "currency": "EUR", "ui": "de", "default_edition": "de", "price": 14.99, "vat": { "rate": 0.07, "mode": "inclusive", "scheme": "DE_book_VAT" }, "fulfil_region": "EU", "ship_zone": "EU" },
+    "AT": { "currency": "EUR", "ui": "de", "default_edition": "de", "price": 14.99, "vat": { "rate": 0.10, "mode": "inclusive", "scheme": "OSS" }, "fulfil_region": "EU", "ship_zone": "EU" },
+    "CY": { "currency": "EUR", "ui": "en", "default_edition": "en", "price": 14.99, "vat": { "rate": 0.19, "mode": "inclusive", "scheme": "OSS" }, "fulfil_region": "EU", "ship_zone": "EU" },
+    "OTHER_EU": { "currency": "EUR", "ui": "en", "default_edition": "en", "price": 14.99, "vat": { "rate": null, "mode": "inclusive", "scheme": "OSS_destination_rate" }, "fulfil_region": "EU", "ship_zone": "EU" },
+    "GB": { "currency": "GBP", "ui": "en", "default_edition": "en", "price": 11.99, "vat": { "rate": 0.0, "mode": "zero_rated", "scheme": "UK_printed_book" }, "fulfil_region": "UK", "ship_zone": "UK" },
+    "US": { "currency": "USD", "ui": "en", "default_edition": "en", "price": 14.99, "vat": { "rate": 0.0, "mode": "none", "scheme": "US_no_nexus_confirm" }, "fulfil_region": "US", "ship_zone": "US" },
+    "PH": { "currency": "USD", "ui": "en", "default_edition": "en", "price": 14.99, "vat": { "rate": 0.0, "mode": "export", "scheme": "export_sale" }, "fulfil_region": "POD_GLOBAL", "ship_zone": "LONGHAUL" },
+    "DEFAULT": { "currency": "USD", "ui": "en", "default_edition": "en", "price": 14.99, "vat": { "rate": 0.0, "mode": "none", "scheme": "export_sale" }, "fulfil_region": "POD_GLOBAL", "ship_zone": "LONGHAUL" }
+  },
+
+  "ship_estimate_eur": {
+    "EU": 3.20,
+    "UK": 5.50,
+    "US": 4.10,
+    "LONGHAUL": 18.00
+  },
+
+  "fx_from_eur": { "EUR": 1.0, "GBP": 0.80, "USD": 1.0 },
+
+  "stripe_payment_links": {
+    "en_EUR": "https://buy.stripe.com/test_eVq6oG5eA3JzaqV6PW00001",
+    "en_GBP": "https://buy.stripe.com/test_dRmfZg22o1Br8iNfms00003",
+    "en_USD": "https://buy.stripe.com/test_dRm14mgXigwl0Ql6PW00002",
+    "de_EUR": "https://buy.stripe.com/test_7sY3cu4aw5RH8iNgqw00000"
+  },
+
+  "amazon": {
+    "marketplace_by_country": {
+      "DE": "https://www.amazon.de/dp/PENDING_ASIN",
+      "AT": "https://www.amazon.de/dp/PENDING_ASIN",
+      "CY": "https://www.amazon.de/dp/PENDING_ASIN",
+      "GB": "https://www.amazon.co.uk/dp/PENDING_ASIN",
+      "US": "https://www.amazon.com/dp/PENDING_ASIN",
+      "PH": "https://www.amazon.com/dp/PENDING_ASIN",
+      "MX": "https://www.amazon.com.mx/dp/PENDING_ASIN",
+      "DEFAULT": "https://www.amazon.com/dp/PENDING_ASIN"
+    }
+  }
+}
