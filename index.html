@@ -144,7 +144,7 @@
 <footer>
   <div class="wrap">
     <span>Beat Publishing · Zinonos Sozou 1, 1075 Nicosia · heart@beatpublishing.com</span>
-    <span id="f-route">Amazon shown only where direct shipping is uneconomic.</span>
+    <span id="f-route">Some regions are served via Amazon.</span>
   </div>
 </footer>
 
@@ -235,13 +235,13 @@ function render(){
     actions.innerHTML =
       '<a class="btn btn-primary" href="'+link+'">Order direct — '+priceTxt+'</a>'+
       '<a class="btn btn-ghost" href="#book">Read an extract</a>';
-    route.innerHTML = 'Route: <b>direct</b> · est. margin €'+margin.toFixed(2)+' ≥ floor €'+CATALOG.margin_floor_eur.toFixed(2);
+    route.textContent = 'Ships direct from the publisher';
   } else {
     const az = CATALOG.amazon[state.country] || CATALOG.amazon.DEFAULT;
     actions.innerHTML =
       '<a class="btn btn-amazon" href="'+az+'">Buy on Amazon — '+priceTxt+'</a>'+
       '<a class="btn btn-ghost" href="#book">Read an extract</a>';
-    route.innerHTML = 'Route: <b>Amazon</b> · direct margin €'+margin.toFixed(2)+' &lt; floor — local POD is cheaper';
+    route.textContent = 'Available via Amazon in your region';
   }
 
   const v = document.getElementById("vat");
