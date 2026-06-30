@@ -1,0 +1,12 @@
+{
+  "name": "beat-publishing-dtc",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Beat Publishing direct-to-consumer storefront + Stripe->fulfilment webhook (Netlify).",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "stripe": "^16.0.0"
+  }
+}
